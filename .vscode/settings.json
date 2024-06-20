@@ -1,5 +1,7 @@
 {
-  "eslint.options": {
-    "configFile": ".eslintrc.json"
-  }
+  "vetur.validation.template": false,
+  "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript"],
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+  "vetur.format.defaultFormatter.ts": "prettier",
+  "vetur.format.defaultFormatter.html": "prettier"
 }

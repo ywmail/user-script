@@ -1,10 +1,11 @@
-const $ = require("jquery");
-import { UserScript } from "./user-script";
+/* eslint-disable @typescript-eslint/no-this-alias */
+import $ from "jquery";
+import { UiUserScript } from "./ui-user-script";
 
-export class LazyDomUserScript extends UserScript {
+export class LazyDomUserScript extends UiUserScript {
   protected config = { attributes: false, childList: true, subtree: true };
   protected observer: MutationObserver = new MutationObserver(() => void 0);
-  protected domString: string = "";
+  protected domString = "";
 
   constructor() {
     super();
@@ -27,7 +28,7 @@ export class LazyDomUserScript extends UserScript {
   }
 
   // eslint-disable-next-line no-magic-numbers
-  public loopUntilTrue(fun: () => boolean, step = 500): Promise<any> {
+  public loopUntilTrue(fun: () => boolean, step = 500): Promise<boolean> {
     const MAX_LOOP = 20;
     return new Promise((resolve, reject) => {
       if (fun() === true) {
@@ -53,7 +54,7 @@ export class LazyDomUserScript extends UserScript {
     });
   }
 
-  public waitUntilDomReady(domString?: string): Promise<any> {
+  public waitUntilDomReady(domString?: string): Promise<boolean> {
     const fun = () => {
       return $(domString || this.domString).length > 0;
     };
